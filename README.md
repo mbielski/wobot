@@ -4,18 +4,11 @@ A plugin-based HipChat bot written in Node.js.
 
 # Installation
 
-The easiest way to obtain Wobot is through [npm](http://npmjs.org/):
-
-    npm install wobot
-
-Keep in mind this module depends on `node-xmpp` which cannot be built without:
-
- - libexpat1-dev: `apt-get install libexpat1-dev`
- - libicu-dev: `apt-get install libicu-dev`
+Download the source.
 
 # Your First Bot
 
-Instantiate the `wobot.Bot` class by passing it a hash containing:
+Create a file called `wobot.js` and instantiate the `wobot.Bot` class by passing it an object containing:
 
   - `jid`: Jabber ID followed by `/bot`
   - `password`: The account's password
@@ -27,10 +20,12 @@ Instantiate the `wobot.Bot` class by passing it a hash containing:
 var wobot = require('wobot');
 
 var bot = new wobot.Bot({
-  jid: '????_????@chat.hipchat.com/bot',
-  password: '??????'
+  jid: '####_####@chat.hipchat.com/bot', //replace ##_## with your hipchat info
+  password: 'Abc123' //put in your password
 });
-
+  
+//load any plugins here before the bot connects
+  
 bot.connect();
 ```
 
@@ -145,9 +140,27 @@ Sends an IQ stanza and stores a callback to be called when its response is recei
  - `callback` in the form of `function (err, stanza)`.
    - `err` is a string representation of the error, if any.
    - `stanza` is the full response stanza, an `xmpp.Element`.
+   
+# Running the bot as a Windows Service
+The bot can be run as a Windows service.
+
+- Open an administrator command prompt on the server where the Wobot will run and change to the directory where the `installService.js` file resides.
+- Type `node installService.js`
+
+#Changing or Removing the Windows Service
+If you have to change the path to the file that runs Wobot, you need to perform the following steps:
+
+- Stop the service
+- Run the removeService.js file
+- Change the path/file name in both removeService.js and installService.js to match what you have changed it to
+- Run the installService.js file
+
+Changing the file name or location should be an absolute Last Resort! 
 
 # Legal stuff
 
 Copyright (c) 2011 Christian Joudrey. See LICENSE for details.
+
+Updates and Wobot as a Windows Service Copyright (c) 2018 Michael Bielski. Same license applies.
 
 Node.js is an official trademark of Joyent. This module is not formally related to or endorsed by the official Joyent Node.js open source or commercial project.

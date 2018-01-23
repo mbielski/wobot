@@ -1,3 +1,12 @@
+1.0.0 / 2018-01-23
+==================
+  * Updated project to use node-xmpp-client as node-xmpp is no longer being maintained
+  * Updated underscore to newer version
+  * Added additional dependencies of he 1.1 and node-windows 0.1
+  * Added installService.js and removeService.js files
+  * Updated ReadMe to include instructions on running the bot as a Windows service
+  * Updated the `chuckjokes.js` plugin to include better parsing of the values returned from the http call
+
 0.8.1 / 2013-10-16
 ==================
 

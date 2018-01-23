@@ -1,12 +1,13 @@
 // This is a sample plugin that will display
 // a random Chuck Norris joke every time someone
-// types !chuck in a channel.
+// types /chuck in a channel.
 
 var http = require('http');
 var bind = require('underscore').bind;
+var he = require(he);
 
 module.exports.load = function(bot) {
-  bot.onMessage('!chuck', onMessage);
+  bot.onMessage('/chuck', onMessage);
 };
 
 var onMessage = function(channel, from, message) {
@@ -24,8 +25,10 @@ var onMessage = function(channel, from, message) {
       data += chunk;
     });
     res.on('end', function(chunk) {
-      data = JSON.parse(data);
-      self.message(channel, '@' + from.split(' ')[0] + ' ' + data.value.joke);
+	    data = JSON.parse(data);
+	    var encodedStr = data.value.joke;
+	    var dom = he.decode(encodedStr);
+	    self.message(channel, '@' + from.split(' ')[0] + ' ' + dom);
     });
   });
 
