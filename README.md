@@ -147,7 +147,8 @@ The bot can be run as a Windows service.
 - Open an administrator command prompt on the server where the Wobot will run and change to the directory where the `installService.js` file resides.
 - Type `node installService.js`
 
-#Changing or Removing the Windows Service
+# Changing or Removing the Windows Service
+
 If you have to change the path to the file that runs Wobot, you need to perform the following steps:
 
 - Stop the service
